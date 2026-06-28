@@ -23,6 +23,10 @@ aws_secret_access_key = hEYNnc7h3PyGOy50XwZcARbHLlpX8EKdUpzMmoUb
 ```
 - ##### R2 Cloudflare
 ```ps1
+# Permissions
+- Account API Tokens
+Object Read & Write: Allows the ability to read, write, and list objects in specific buckets.
+
 # backup (sync)
 $env:AWS_REGION = "auto"; ./s5cmd --endpoint-url https://.com --credentials-file ./s3-credentials-file --profile default sync s3://test/profile/* ./info2/s3/
 # restore (sync)
