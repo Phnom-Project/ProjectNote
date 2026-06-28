@@ -21,7 +21,14 @@ aws_secret_access_key = hEYNnc7h3PyGOy50XwZcARbHLlpX8EKdUpzMmoUb
 # list
 ./s5cmd --endpoint-url=http://localhost:9000 --credentials-file ./your-credentials-file --profile default ls s3://image/
 ```
-- ##### aws
+- ##### R2 Cloudflare
+```ps1
+# backup (sync)
+$env:AWS_REGION = "auto"; ./s5cmd --endpoint-url https://.com --credentials-file ./s3-credentials-file --profile default sync s3://test/profile/* ./info2/s3/
+# restore (sync)
+$env:AWS_REGION = "auto"; ./s5cmd --endpoint-url https://.com --credentials-file ./s3-credentials-file --profile default sync ./info/s3/ s3://test/profile/
+```
+- ##### AWS
   - AWS_REGION environment variable. (ex: ap-southeast-1)
 ```ps1
 # verify
