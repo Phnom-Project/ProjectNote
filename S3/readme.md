@@ -14,25 +14,46 @@ E:\3ytest\1DB_minio\minio.exe server E:\3ytest\1DB_minio\Data --console-address 
 > (file) your-credentials-file
 ```
 [default]
-aws_access_key_id = a0H1zKekXk8dOMTAJbAO
-aws_secret_access_key = hEYNnc7h3PyGOy50XwZcARbHLlpX8EKdUpzMmoUb
+aws_access_key_id = a0...AO
+aws_secret_access_key = h...KdUpzMmoUb
 ```
 ```ps1
 # list
 ./s5cmd --endpoint-url=http://localhost:9000 --credentials-file ./your-credentials-file --profile default ls s3://image/
 ```
-- ##### R2 Cloudflare
+- #### R2 Cloudflare
+> Configuration
 ```ps1
 # Permissions
 - Account API Tokens
 Object Read & Write: Allows the ability to read, write, and list objects in specific buckets.
-
+# CORS Policy
+[
+  {
+    "AllowedOrigins": [
+      "*"
+    ],
+    "AllowedMethods": [
+      "GET",
+      "PUT"
+    ],
+    "AllowedHeaders": [
+      "*"
+    ],
+    "ExposeHeaders": [
+      "*"
+    ]
+  }
+]
+```
+> Backup
+```ps1
 # backup (sync)
 $env:AWS_REGION = "auto"; ./s5cmd --endpoint-url https://.com --credentials-file ./s3-credentials-file --profile default sync s3://test/profile/* ./info2/s3/
 # restore (sync)
 $env:AWS_REGION = "auto"; ./s5cmd --endpoint-url https://.com --credentials-file ./s3-credentials-file --profile default sync ./info/s3/ s3://test/profile/
 ```
-- ##### AWS
+- #### AWS
   - AWS_REGION environment variable. (ex: ap-southeast-1)
 ```ps1
 # verify
